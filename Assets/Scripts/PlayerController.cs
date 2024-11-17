@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
     // 플레이어의 직접적인 회전없이 카메라 회전을 하기 위한 pivot
     [SerializeField] Transform rotatePivot;
 
+    [SerializeField] Weapon weapon;
+
     float angleX;
     float angleY;
 
@@ -44,6 +46,12 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
 
         Move();
         Rotation();
+
+        // 마우스 좌클릭
+        if (Input.GetMouseButtonDown(0))
+        {
+            weapon.Fire(_renderer.material.color);
+        }
     }
 
     private void Move()
